@@ -3,14 +3,14 @@ const dbConnect = require('../utils/dbConnect');
 const User = require('../models/User');
 const router = express.Router();
 
-router.get('/:id', async (req, res) => {
+router.get('/:username', async (req, res) => {
   await dbConnect();
 
-  const { id } = req.params;
+  const { username } = req.params; // Now we're using username instead of _id
 
   try {
-    // Ensure you're querying with _id
-    const user = await User.findOne({ _id: id }); 
+    // Query by username instead of _id
+    const user = await User.findOne({ username }); 
 
     if (!user) {
       return res.status(404).json({ success: false, message: 'User not found' });

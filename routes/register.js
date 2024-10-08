@@ -12,14 +12,16 @@ router.post('/', async (req, res) => {
     // Destructure the request body
     const { username, referredBy } = req.body;
 
-    console.log("what is the u name ", username)
-
     // Validate the presence of username
     if (!username) {
-     
       return res.status(400).json({ success: false, error: 'Username is required.' });
     }
 
+    // Check if the username already exists
+    const existingUser = await User.findOne({ username });
+    if (existingUser) {
+      return res.status(400).json({ success: false, error: 'Username already exists.' });
+    }
 
     // Create a new user instance
     const newUser = new User({
