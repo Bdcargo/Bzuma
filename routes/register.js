@@ -23,10 +23,13 @@ router.post('/', async (req, res) => {
       return res.status(400).json({ success: false, error: 'Username already exists.' });
     }
 
+    const existingUser2 = await User.findOne({ referredBy });
+
+
     // Create a new user instance
     const newUser = new User({
       username,
-      referredBy: referredBy || null,
+      referredBy: existingUser2._id || null,
     });
 
     // Save the new user to the database
