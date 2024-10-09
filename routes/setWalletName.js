@@ -4,7 +4,7 @@ const User = require('../models/User');
 const router = express.Router();
 
 // POST route to set or update wallet name
-router.post('/setWalletName', async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     // Connect to the database
     await dbConnect();
