@@ -29,7 +29,7 @@ router.post('/', async (req, res) => {
     // Create a new user instance
     const newUser = new User({
       username,
-      referredBy: existingUser2._id || null,
+      referredBy: referredBy || null,
     });
 
     // Save the new user to the database
@@ -37,7 +37,7 @@ router.post('/', async (req, res) => {
 
     // Handle referral logic if referredBy is provided
     if (referredBy) {
-      const referrer = await User.findById(referredBy);
+      const referrer = await User.findOne({ username: referredBy });
       if (referrer) {
         referrer.referrals.push({
           user: newUser._id,
