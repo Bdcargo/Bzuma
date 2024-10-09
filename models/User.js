@@ -9,6 +9,7 @@ const userSchema = new mongoose.Schema({
   }],
   wallet: {
     balance: { type: Number, default: 0 },
+    name: { type: String, default: "" },
     amount_sent: { type: Number, default: 0 },
     transaction_status: { type: String, default: 'inactive' },
     transaction_hash: { type: String, default: '' },

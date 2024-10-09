@@ -21,6 +21,7 @@ const transactionRoute = require('./routes/transaction');
 const updateWalletRoute = require('./routes/updateWallet');
 const getUserRoute = require('./routes/getUser');
 const saveUserRoute = require('./routes/saveUser');
+const setWalletName = require('./routes/setWalletName');
 
 // Use routes (all routes will be prefixed with /api)
 app.use('/api/referrals', referralsRoute);
@@ -29,6 +30,7 @@ app.use('/api/transaction', transactionRoute);
 app.use('/api/updateWallet', updateWalletRoute);
 app.use('/api/getUser', getUserRoute);
 app.use('/api/saveUser', saveUserRoute);
+app.use('/api/setWalletName', setWalletName);
 
 // Default route for health check or basic response
 app.get('/', (req, res) => {
